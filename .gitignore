@@ -1,1 +1,3 @@
 /BootStrap_Prototype
+/node_modules
+*.code-workspace

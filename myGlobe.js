@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
+app.use(express.static('public'));
 
 // home page
 app.get('/', function(req,res){
@@ -23,12 +24,32 @@ app.get('/about', function(req,res){
 
 // explore 
 app.get('/explore', function(req,res){
-  res.render('about');
+  res.render('explore');
 });
 
-// contribute 
-app.get('/contribute', function(req,res){
-  res.render('explore');
+// airports 
+app.get('/airports', function(req,res){
+  res.render('airports');
+});
+
+// countries 
+app.get('/countries', function(req,res){
+  res.render('countries');
+});
+
+// flights 
+app.get('/flights', function(req,res){
+  res.render('flights');
+});
+
+// languages 
+app.get('/languages', function(req,res){
+  res.render('languages');
+});
+
+// vacation 
+app.get('/vacations', function(req,res){
+  res.render('vacations');
 });
 
 // error handlers

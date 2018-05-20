@@ -1,0 +1,22 @@
+
+
+
+/* ################################## 
+        Semantic UI Class fixes
+   ################################## */
+
+/* remove bottom margin of menu */
+.ui.menu {
+    margin: 0;
+}
+
+
+/* removes bullet points from unordered list */
+.ui.bulleted.list .list>.item:before, .ui.bulleted.list>.item:before, ul.ui.list li:before {
+    content: none;
+}
+
+/* table data cells are vertically aligned in the middle */
+.ui.basic.table td {
+    vertical-align: middle;
+}

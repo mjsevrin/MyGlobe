@@ -1,0 +1,75 @@
+<br>
+<div class="ui horizontally padded grid">
+    <form class="ui form">
+        <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Name">
+        </div>
+        <div class="field">
+            <label>IATA Code</label>
+            <input type="text" name="IATA" placeholder="Code">
+        </div>
+        <div class="field">
+            <label>Location</label>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui selection dropdown">
+                        <input type="hidden" name="country">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Country</div>
+                        <div class="menu">
+                            <div class="item">\{{country}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="text" name="city" placeholder="City">
+                </div>
+            </div>
+        </div>
+        <button class="ui tiny button">Add Entity</button>
+    </form>
+</div>
+
+<div class="ui divider"></div>
+
+<div class="ui padded grid">
+    <div class="ten wide column">
+        <h2 class="ui header">Current Airports:</h2>
+    </div>
+{{#each row}}
+{{/each}}
+    <div class="eight wide column">
+        <table class="ui basic compact table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>IATA Code</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Atlanta International</td>
+                    <td>ATL</td>
+                    <td>Atlanta</td>
+                    <td>USA</td>
+                    <td>
+                        <div class="tiny ui buttons">
+                            <button class="ui green inverted button">Update</button> 
+                            <div class="or"></div>
+                            <button class="ui red inverted button">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+  $('.ui.dropdown')
+  .dropdown();
+</script>

@@ -1,0 +1,40 @@
+<br>
+<div class="ui horizontally padded grid">
+    <form class="ui form">
+        <div class="field">
+            <label>Vacation Type</label>
+            <input type="text" name="name" placeholder="Name">
+        </div>
+        <button class="ui tiny button">Add Entity</button>
+    </form>
+</div>
+
+
+<div class="ui divider"></div>
+
+<div class="ui horizontally padded grid">
+    <div class="ten wide column">
+        <h2 class="ui header">Current Vacation Types:</h2>
+    </div>
+    <div class="six wide column"></div>
+{{#each row}}
+{{/each}}
+    <div class="three wide column">
+        <table class="ui basic compact table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Alpine</td>
+                    <td>
+                        <button class="ui tiny red inverted button">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

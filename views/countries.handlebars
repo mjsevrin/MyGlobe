@@ -1,0 +1,70 @@
+<br>
+<div class="ui horizontally padded grid">
+    <form class="ui form">
+        <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Name">
+        </div>
+        <div class="field">
+            <label>Continent</label>
+            <div class="ui selection dropdown">
+                <input type="hidden" name="continent">
+                <i class="dropdown icon"></i>
+                <div class="default text">Continent</div>
+                <div class="menu">
+                    <div class="item" data-value="AF">Africa</div>
+                    <div class="item" data-value="AS">Asia</div>
+                    <div class="item" data-value="EU">Europe</div>
+                    <div class="item" data-value="NA">North America</div>
+                    <div class="item" data-value="SA">South America</div>
+                    <div class="item" data-value="OC">Oceania</div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Financial Power Index</label>
+            <input type="number" name="fpi" placeholder="FPI" min="0.00" max="2.00" step="0.1">
+        </div>
+        <button class="ui tiny button">Add Entity</button>
+    </form>
+</div>
+
+<div class="ui divider"></div>
+
+<div class="ui horizontally padded grid">
+    <div class="ten wide column">
+        <h2 class="ui header">Current Countries:</h2>
+    </div>
+
+{{#each row}}
+{{/each}}
+    <div class="eight wide column">
+        <table class="ui basic compact table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Continent</th>
+                    <th>FPI</th>
+                    <th>Language</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>USA</td>
+                    <td>NA</td>
+                    <td>1.00</td>
+                    <td>English</td>
+                    <td>
+                        <button class="ui tiny red inverted button">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+  $('.ui.dropdown')
+  .dropdown();
+</script>

@@ -16,8 +16,6 @@
         <h2 class="ui header">Current Languages:</h2>
     </div>
     <div class="six wide column"></div>
-{{#each row}}
-{{/each}}
     <div class="three wide column">
         <table class="ui basic compact table">
             <thead>
@@ -27,12 +25,14 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each languages}}
                 <tr>
-                    <td>English</td>
+                    <td>{{name}}</td>
                     <td>
                         <button class="ui tiny red inverted button">Delete</button>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

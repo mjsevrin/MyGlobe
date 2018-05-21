@@ -36,8 +36,6 @@
     <div class="ten wide column">
         <h2 class="ui header">Current Flights:</h2>
     </div>
-{{#each row}}
-{{/each}}
     <div class="eight wide column">
         <table class="ui basic compact table">
             <thead>
@@ -51,16 +49,18 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each flights}}
                 <tr>
-                    <td>DL</td>
-                    <td>100</td>
-                    <td>ATL</td>
-                    <td>BRU</td>
-                    <td>700</td>
+                    <td>{{airline_code}}</td>
+                    <td>{{flight_number}}</td>
+                    <td>{{src}}</td>
+                    <td>{{dest}}</td>
+                    <td>{{cost}}</td>
                     <td>
                         <button class="ui tiny red inverted button">Delete</button>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

@@ -36,29 +36,29 @@
         <h2 class="ui header">Current Countries:</h2>
     </div>
 
-{{#each row}}
-{{/each}}
     <div class="eight wide column">
         <table class="ui basic compact table">
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Language</th>
                     <th>Continent</th>
                     <th>FPI</th>
-                    <th>Language</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
+                {{#each countries}}
                 <tr>
-                    <td>USA</td>
-                    <td>NA</td>
-                    <td>1.00</td>
-                    <td>English</td>
+                    <td>{{name}}</td>
+                    <td>{{language}}</td>
+                    <td>{{continent}}</td>
+                    <td>{{FPI}}</td>
                     <td>
                         <button class="ui tiny red inverted button">Delete</button>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

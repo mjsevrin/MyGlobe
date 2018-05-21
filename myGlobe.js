@@ -2,14 +2,22 @@ var express = require('express');
 
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout:'main'});
+var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 
+// body parser settings
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// handlebar settings
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
+
+// port/connection settings
 app.set('port', process.argv[2]);
+app.set('mysql', mysql);
+
+// static ressources
 app.use(express.static('public'));
 
 // home page
@@ -27,34 +35,25 @@ app.get('/explore', function(req,res){
   res.render('explore');
 });
 
-// airports 
-app.get('/airports', function(req,res){
-  res.render('airports');
-});
+// airports
+app.use('/airports', require('./airports.js'));
 
-// countries 
-app.get('/countries', function(req,res){
-  res.render('countries');
-});
+// countries
+app.use('/countries', require('./countries.js'));
 
 // flights 
-app.get('/flights', function(req,res){
-  res.render('flights');
-});
+app.use('/flights', require('./flights.js'));
 
 // languages 
-app.get('/languages', function(req,res){
-  res.render('languages');
-});
+app.use('/languages', require('./languages.js'));
 
-// vacation 
-app.get('/vacations', function(req,res){
-  res.render('vacations');
-});
+// flights 
+app.use('/vacations', require('./vacations.js'));
 
 // error handlers
 app.use(function(req,res){
   res.status(404);
+  console.log("Error");
   res.render('404');
 });
 

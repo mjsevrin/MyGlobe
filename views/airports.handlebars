@@ -1,6 +1,6 @@
 <br>
 <div class="ui horizontally padded grid">
-    <form class="ui form">
+    <form class="ui form" action="/airports" method="POST">
         <div class="field">
             <label>Name</label>
             <input type="text" name="name" placeholder="Name">
@@ -18,7 +18,9 @@
                         <i class="dropdown icon"></i>
                         <div class="default text">Country</div>
                         <div class="menu">
-                            <div class="item">\{{country}}</div>
+                            {{#each countries}}
+                            <div class="item" data-value={{country_id}}>{{name}}</div>
+                            {{/each}}
                         </div>
                     </div>
                 </div>
@@ -37,8 +39,6 @@
     <div class="ten wide column">
         <h2 class="ui header">Current Airports:</h2>
     </div>
-{{#each row}}
-{{/each}}
     <div class="eight wide column">
         <table class="ui basic compact table">
             <thead>
@@ -51,19 +51,21 @@
                 </tr>
             </thead>
             <tbody>
+                {{#each airports}}
                 <tr>
-                    <td>Atlanta International</td>
-                    <td>ATL</td>
-                    <td>Atlanta</td>
-                    <td>USA</td>
+                    <td>{{airport}}</td>
+                    <td>{{IATA_code}}</td>
+                    <td>{{city}}</td>
+                    <td>{{country}}</td>
                     <td>
                         <div class="tiny ui buttons">
-                            <button class="ui green inverted button">Update</button> 
+                            <button class="ui green inverted button" onclick=location.href="/airports/{{id}}">Update</button> 
                             <div class="or"></div>
-                            <button class="ui red inverted button">Delete</button>
+                            <button class="ui red inverted button" onclick="deleteAirports({{id}})">Delete</button>
                         </div>
                     </td>
                 </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

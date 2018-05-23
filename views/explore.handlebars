@@ -1,2 +1,56 @@
-<h1>Explore</h1>
-<h2>Hi Eric</h2>
+<br>
+<div class="content">
+    <div class="ui container">
+        <div class="ui padded grid">
+            <div class="six wide left floated column">
+                <form id="explore" class="ui form" action="/airports" method="POST">
+                    <div class="field">
+                        <label>Continent</label>
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="continent">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Continent</div>
+                            <div class="menu">
+                                <div class="item" data-value="AF">Africa</div>
+                                <div class="item" data-value="AS">Asia</div>
+                                <div class="item" data-value="EU">Europe</div>
+                                <div class="item" data-value="NA">North America</div>
+                                <div class="item" data-value="SA">South America</div>
+                                <div class="item" data-value="OC">Oceania</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="ui tiny button">Search</button>
+                </form>
+            </div>
+            <div class="eight wide right floated column">
+                    <h3>Search Tips</h3>
+                <ul>
+                    <li>Keep your search broad at first.</li>
+                    <li>If the search returns empty, don't get discouraged.</li>
+                    <li>If you are looking to travel for cheap, search for countries with low FPI.</li>
+                </ul>
+                <div class="ui two column grid">
+                    <div class="row">
+                        <div class="column">
+                            <h3>FOUND A DESTINATION?</h3>
+                            <p>Search Flights with Google Flights</p>
+                        </div>
+                        <div class="flexCol">
+                            <button class="classic inverted large" onclick=location.href="https://www.google.com/flights/">Search Flights</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui divider"></div>
+
+{{>footer}}
+
+<script>
+  $('.ui.dropdown')
+  .dropdown();
+</script>

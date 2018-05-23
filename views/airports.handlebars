@@ -1,75 +1,80 @@
 <br>
-<div class="ui horizontally padded grid">
-    <form class="ui form" action="/airports" method="POST">
-        <div class="field">
-            <label>Name</label>
-            <input type="text" name="name" placeholder="Name">
-        </div>
-        <div class="field">
-            <label>IATA Code</label>
-            <input type="text" name="IATA" placeholder="Code">
-        </div>
-        <div class="field">
-            <label>Location</label>
-            <div class="two fields">
-                <div class="field">
-                    <div class="ui selection dropdown">
-                        <input type="hidden" name="country">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Country</div>
-                        <div class="menu">
-                            {{#each countries}}
-                            <div class="item" data-value={{country_id}}>{{name}}</div>
-                            {{/each}}
+<div class="content">
+    <div class="ui padded grid">
+        <form class="ui form" action="/airports" method="POST">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="name" placeholder="Name">
+            </div>
+            <div class="field">
+                <label>IATA Code</label>
+                <input type="text" name="IATA" placeholder="Code">
+            </div>
+            <div class="field">
+                <label>Location</label>
+                <div class="two fields">
+                    <div class="field">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="country">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Country</div>
+                            <div class="menu">
+                                {{#each countries}}
+                                <div class="item" data-value={{country_id}}>{{name}}</div>
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="field">
-                    <input type="text" name="city" placeholder="City">
+                    <div class="field">
+                        <input type="text" name="city" placeholder="City">
+                    </div>
                 </div>
             </div>
+            <button class="ui tiny button">Add Entity</button>
+        </form>
+    </div>
+
+    <div class="ui divider"></div>
+
+
+    <div class="ui horizontally padded grid">
+        <div class="ten wide column">
+            <h2 class="ui header">Current Airports:</h2>
         </div>
-        <button class="ui tiny button">Add Entity</button>
-    </form>
-</div>
-
-<div class="ui divider"></div>
-
-<div class="ui padded grid">
-    <div class="ten wide column">
-        <h2 class="ui header">Current Airports:</h2>
-    </div>
-    <div class="eight wide column">
-        <table class="ui basic compact table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>IATA Code</th>
-                    <th>City</th>
-                    <th>Country</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each airports}}
-                <tr>
-                    <td>{{airport}}</td>
-                    <td>{{IATA_code}}</td>
-                    <td>{{city}}</td>
-                    <td>{{country}}</td>
-                    <td>
-                        <div class="tiny ui buttons">
-                            <button class="ui green inverted button" onclick=location.href="/airports/{{id}}">Update</button> 
-                            <div class="or"></div>
-                            <button class="ui red inverted button" onclick="deleteAirports({{id}})">Delete</button>
-                        </div>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+        <div class="eight wide column">
+            <table class="ui basic compact table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>IATA Code</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each airports}}
+                    <tr>
+                        <td>{{airport}}</td>
+                        <td>{{IATA_code}}</td>
+                        <td>{{city}}</td>
+                        <td>{{country}}</td>
+                        <td>
+                            <div class="tiny ui buttons">
+                                <button class="ui green inverted button" onclick=location.href="/airports/{{id}}">Update</button> 
+                                <div class="or"></div>
+                                <button class="ui red inverted button" onclick="deleteAirports({{id}})">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+{{>footer}}
 
 <script>
   $('.ui.dropdown')

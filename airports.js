@@ -46,7 +46,7 @@ module.exports = function() {
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        context.jsscripts = ["deleteairports.js"];
+        context.jsscripts = ["/script/deleteairports.js"];
         getAirports(res, mysql, context, complete);
         getCountries(res, mysql, context, complete);
         function complete() {
@@ -60,7 +60,7 @@ module.exports = function() {
     router.get('/:id', function(req,res){
         var callbackCount = 0;
         var context = {};
-        //context.jsscripts = ["selectcountries.js","updateairports.js"];
+        context.jsscripts = ["/script/selectcountries.js","/script/updateairports.js"];
         var mysql = req.app.get('mysql');
         getAirport(res, mysql, context, req.params.id, complete);
         getCountries(res, mysql, context, complete);
@@ -68,7 +68,6 @@ module.exports = function() {
             callbackCount++;
             if (callbackCount >= 2) {
                 res.render('update-airport', context);
-                console.log(context);
             }
         }
     });
@@ -88,17 +87,15 @@ module.exports = function() {
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        console.log(req.body);
         var sql = "update Airport set name=?, IATA_code=?, city=?, location=? WHERE airport_id=?";
-        var inserts = [req.body.name, req.body.IATA, req.body.city, req.body.location, req.params.id];
+        var inserts = [req.body.name, req.body.IATA, req.body.city, req.body.country, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
-                res.status(200);
-                res.end();
+                res.status(200).end();
             }
         });
     }); 

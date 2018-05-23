@@ -1,67 +1,71 @@
 <br>
-<div class="ui horizontally padded grid">
-    <form class="ui form">
-        <div class="field">
-            <label>Flight Information</label>
-            <div class="three fields">
-                <div class="field">
-                    <input type="text" name="airline" placeholder="Airline Code">
-                </div>
-                <div class="field">
-                    <input type="number" name="flightnum" placeholder="Flight #" min="0">
-                </div>
-                <div class="field">
-                    <input type="number" name="cost" placeholder="$" min="0">
+<div class="content">
+    <div class="ui padded grid">
+        <form class="ui form">
+            <div class="field">
+                <label>Flight Information</label>
+                <div class="three fields">
+                    <div class="field">
+                        <input type="text" name="airline" placeholder="Airline Code">
+                    </div>
+                    <div class="field">
+                        <input type="number" name="flightnum" placeholder="Flight #" min="0">
+                    </div>
+                    <div class="field">
+                        <input type="number" name="cost" placeholder="$" min="0">
+                    </div>
                 </div>
             </div>
+            <div class="field">
+                <label>Itinerary</label>
+                <div class="two fields">
+                    <div class="field">
+                        <input type="text" name="departing" placeholder="Departing Airport">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="arriving" placeholder="Arriving Airport">
+                    </div>
+                </div>
+                <button class="ui tiny button">Add Entity</button>            
+            </div> 
+        </form>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div class="ui horizontally padded grid">
+        <div class="ten wide column">
+            <h2 class="ui header">Current Flights:</h2>
         </div>
-        <div class="field">
-            <label>Itinerary</label>
-            <div class="two fields">
-                <div class="field">
-                    <input type="text" name="departing" placeholder="Departing Airport">
-                </div>
-                <div class="field">
-                    <input type="text" name="arriving" placeholder="Arriving Airport">
-                </div>
-            </div>
-            <button class="ui tiny button">Add Entity</button>            
-        </div> 
-    </form>
-</div>
-
-<div class="ui divider"></div>
-
-<div class="ui horizontally padded grid">
-    <div class="ten wide column">
-        <h2 class="ui header">Current Flights:</h2>
-    </div>
-    <div class="eight wide column">
-        <table class="ui basic compact table">
-            <thead>
-                <tr>
-                    <th>Airline</th>
-                    <th>Flight #</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Cost ($)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each flights}}
-                <tr>
-                    <td>{{airline_code}}</td>
-                    <td>{{flight_number}}</td>
-                    <td>{{src}}</td>
-                    <td>{{dest}}</td>
-                    <td>{{cost}}</td>
-                    <td>
-                        <button class="ui tiny red inverted button">Delete</button>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
+        <div class="eight wide column">
+            <table class="ui basic compact table">
+                <thead>
+                    <tr>
+                        <th>Airline</th>
+                        <th>Flight #</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Cost ($)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each flights}}
+                    <tr>
+                        <td>{{airline_code}}</td>
+                        <td>{{flight_number}}</td>
+                        <td>{{src}}</td>
+                        <td>{{dest}}</td>
+                        <td>{{cost}}</td>
+                        <td>
+                            <button class="ui tiny red inverted button">Delete</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
+
+{{>footer}}

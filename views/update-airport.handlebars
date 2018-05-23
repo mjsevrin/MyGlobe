@@ -1,37 +1,43 @@
 <br>
-<div class="ui horizontally padded grid">
-    <form id="updateAirport" class="ui form" action="/airports" method="POST">
-        <div class="field">
-            <label>Name</label>
-            <input type="text" name="name" value="{{airport.airport}}">
-        </div>
-        <div class="field">
-            <label>IATA Code</label>
-            <input type="text" name="IATA" value="{{airport.IATA_code}}">
-        </div>
-        <div class="field">
-            <label>Location</label>
-            <div class="two fields">
-                <div class="field">
-                    <div class="ui selection dropdown">
-                        <input id="countrySelector" type="hidden" name="country">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Country</div>
-                        <div class="menu">
-                            {{#each countries}}
-                            <div class="item" data-value={{country_id}}>{{name}}</div>
-                            {{/each}}
+<div class="content">
+    <div class="ui padded grid">
+        <form id="updateAirport" class="ui form" "/airports" method="GET">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="name" value="{{airport.airport}}">
+            </div>
+            <div class="field">
+                <label>IATA Code</label>
+                <input type="text" name="IATA" value="{{airport.IATA_code}}">
+            </div>
+            <div class="field">
+                <label>Location</label>
+                <div class="two fields">
+                    <div class="field">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="country">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Country</div>
+                            <div class="menu">
+                                {{#each countries}}
+                                <div class="item" data-value={{country_id}}>{{name}}</div>
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="field">
-                    <input type="text" name="city" value="{{airport.city}}">
+                    <div class="field">
+                        <input type="text" name="city" value="{{airport.city}}">
+                    </div>
                 </div>
             </div>
-        </div>
-        <button class="ui tiny button" onclick="updateAirport({{airport.id}})">Update</button>
-    </form>
+            <button class="ui tiny button" onclick="updateAirport({{airport.id}})">Update</button>
+        </form>
+    </div>
 </div>
+
+{{>footer}}
+
+<script defer>selectCountry({{airport.location}});</script>
 
 <script>
   $('.ui.dropdown')

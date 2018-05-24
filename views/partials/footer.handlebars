@@ -1,0 +1,39 @@
+<footer>
+        <div class="ui container grid">
+            <div class="row">
+                <div class="six wide left floated column">
+                   <h4>DATA USAGE NOTICE:</h4> 
+                   <p>
+                       All data and content are for your informatinal and personal use only.
+                       Commercial uses are strictly prohibited. You may not copy or otherwise transmit
+                       data to a third-party without explicit consent from MyGlobe and it's author. 
+                   </p>
+
+                </div>
+                <div class="seven wide right floated left aligned column">
+                    <h4>CONTENT DISCLAIMER:</h4>
+                    <p>
+                        MyGlobe does not guarantee the vacation experiences reported. 
+                        This information is obtained from community contributions; however
+                        no representation is made as to, and no responsibility or liability is accepted for,
+                        the accuracy or completeness of the information. Information contained
+                        herein is subject to change at any time without notice.
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="grid container">
+            <div class="copyright column">
+                <p id="copyright" class="credits">Made by Martin Sevrin with Semantic UI and Bootstrap 4 &#169 </p> 
+            </div>
+        </div>    
+    </footer>
+
+    <!-- script to always have correct copyright data -->
+    <script>
+        var copyright = document.getElementById("copyright");
+        var date = new Date()
+        var year = document.createTextNode(date.getFullYear());
+        copyright.appendChild(year);
+    </script>

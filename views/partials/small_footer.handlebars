@@ -1,0 +1,16 @@
+<footer>
+    <div class="grid container">
+        <div class="copyright column">
+            <p id="copyright" class="credits">Made by Martin Sevrin with Semantic UI and Bootstrap 4 &#169 </p> 
+        </div>
+    </div>    
+</footer>
+
+<!-- script to always have correct copyright data -->
+<script>
+    var copyright = document.getElementById("copyright");
+    var date = new Date()
+    var year = document.createTextNode(date.getFullYear());
+    copyright.appendChild(year);
+</script>
+

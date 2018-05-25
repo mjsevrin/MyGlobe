@@ -1,0 +1,53 @@
+<br>
+<div class="content">
+    <div class="ui padded grid">
+        <form class="ui form" action="/airports" method="GET" >
+            <div class="field">
+                <label>Country</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="country">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">\{{seledtedCountry}}</div>
+                    <div class="menu">
+                        {{#each countries}}
+                        <div class="item" data-value={{country_id}}>{{name}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Language</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="language">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">\{{selectedLanguage}}</div>
+                    <div class="menu">
+                        {{#each languages}}
+                        <div class="item" data-value={{language_id}}>{{name}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <button class="ui tiny button" type="submit" onclick=location.href="/Country_Language/">Update</button>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+</div>
+
+{{>footer}}
+
+<script defer>
+    selectCountry({{airport.location}});</script>
+<script>
+    $('.ui.dropdown')
+        .dropdown();
+    
+    $('.ui.form')
+        .form({
+            fields: {
+            country : 'empty',
+            language : 'empty'
+            }
+        })
+    ;
+</script>

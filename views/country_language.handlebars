@@ -1,0 +1,87 @@
+<br>
+<div class="content">
+    <div class="ui padded grid">
+        <form class="ui form" action="/airports" method="GET" >
+            <div class="field">
+                <label>Country</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="country">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Country</div>
+                    <div class="menu">
+                        {{#each countries}}
+                        <div class="item" data-value={{country_id}}>{{name}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Language</label>
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="language">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Language</div>
+                    <div class="menu">
+                        {{#each languages}}
+                        <div class="item" data-value={{language_id}}>{{name}}</div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <button class="ui tiny button" type="submit" onclick=location.href="/Country_Language/">Add Relationship</button>
+            <div class="ui error message"></div>
+        </form>
+    </div>
+
+    <div class="ui divider"></div>
+
+
+    <div class="ui horizontally padded grid">
+        <div class="ten wide column">
+            <h2 class="ui header">Countries and their Languages:</h2>
+        </div>
+        <div class="eight wide column">
+            <table class="ui basic compact table">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Language</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each country_languages}}
+                    <tr>
+                        <td>{{country}}</td>
+                        <td>{{language}}</td>
+                        <td>
+                            <div class="tiny ui buttons">
+                                <button class="ui green inverted button" onclick=location.href="/country_language/{{cid}}/{{lid}}" >Update</button> 
+                                <div class="or"></div>
+                                <button class="ui red inverted button">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+</div>
+
+{{>footer}}
+
+<script>
+    $('.ui.dropdown')
+        .dropdown();
+    
+    $('.ui.form')
+        .form({
+            fields: {
+            country : 'empty',
+            language: 'empty'
+            }
+        })
+    ;
+</script>

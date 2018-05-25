@@ -4,7 +4,7 @@ module.exports = function() {
     var router = express.Router();
     
     function getCountries(res, mysql, context, complete) {
-        mysql.pool.query("select Country.name as name, continent, FPI, Language.name as language from Country inner join Country_Language on Country_Language.country_id = Country.country_id inner join Language on Language.language_id = Country_Language.language_id order by Country.name", 
+        mysql.pool.query("select Country.name as name, continent, FPI from Country", 
         function(error, results, fields) {
         if (error) {
             res.write(JSON.stringify(error));

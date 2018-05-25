@@ -7,6 +7,7 @@
                 <input type="text" name="name" placeholder="Name">
             </div>
             <button class="ui tiny button">Add Entity</button>
+            <div class="ui error message"></div>
         </form>
     </div>
 
@@ -39,6 +40,17 @@
             </table>
         </div>
     </div>
+    <div class="ui divider"></div>
 </div>
 
 {{>footer}}
+
+<script>
+$('.ui.form')
+    .form({
+        fields: {
+            name : 'empty'
+        }
+    })
+;
+</script>

@@ -35,19 +35,22 @@ app.get('/explore', function(req,res){
   res.render('explore');
 });
 
-// airports
+// airports view
 app.use('/airports', require('./airports.js'));
 
-// countries
+// countries view
 app.use('/countries', require('./countries.js'));
 
-// flights 
+// country_language view
+app.use('/country_language', require('./country_language.js'));
+
+// flights view
 app.use('/flights', require('./flights.js'));
 
-// languages 
+// languages view
 app.use('/languages', require('./languages.js'));
 
-// flights 
+// vacations view
 app.use('/vacations', require('./vacations.js'));
 
 // error handlers

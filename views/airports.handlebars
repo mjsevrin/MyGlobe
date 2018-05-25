@@ -1,37 +1,64 @@
 <br>
 <div class="content">
     <div class="ui padded grid">
-        <form class="ui form" action="/airports" method="POST">
-            <div class="field">
-                <label>Name</label>
-                <input type="text" name="name" placeholder="Name">
-            </div>
-            <div class="field">
-                <label>IATA Code</label>
-                <input type="text" name="IATA" placeholder="Code">
-            </div>
-            <div class="field">
-                <label>Location</label>
-                <div class="two fields">
+        <div class="two column row">
+            <div class="six wide column">
+                <form class="ui form" action="/airports" method="POST">
                     <div class="field">
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="country">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Country</div>
-                            <div class="menu">
-                                {{#each countries}}
-                                <div class="item" data-value={{country_id}}>{{name}}</div>
-                                {{/each}}
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Name">
+                    </div>
+                    <div class="field">
+                        <label>IATA Code</label>
+                        <input type="text" name="IATA" placeholder="Code">
+                    </div>
+                    <div class="field">
+                        <label>Location</label>
+                        <div class="two fields">
+                            <div class="field">
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" name="country">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Country</div>
+                                    <div class="menu">
+                                        {{#each countries}}
+                                        <div class="item" data-value={{country_id}}>{{name}}</div>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <input type="text" name="city" placeholder="City">
                             </div>
                         </div>
                     </div>
-                    <div class="field">
-                        <input type="text" name="city" placeholder="City">
-                    </div>
-                </div>
+                    <button class="ui tiny button">Add Entity</button>
+                    <div class="ui error message"></div>
+                </form>
             </div>
-            <button class="ui tiny button">Add Entity</button>
-        </form>
+            <div class="four wide column">
+                <form class="ui form" action="" method="GET">
+                    <div class="field">
+                        <label>Filter by Country</label>
+                        <div class="field">
+                            <div class="ui selection dropdown">
+                                <input type="hidden" name="country">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Country</div>
+                                <div class="menu">
+                                    {{#each countries}}
+                                    <div class="item" data-value={{country_id}}>{{name}}</div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="ui tiny button">Filter</button>
+                    <div class="ui error message"></div>
+                </form>
+
+            </div>
+        </div>
     </div>
 
     <div class="ui divider"></div>
@@ -61,7 +88,7 @@
                         <td>{{country}}</td>
                         <td>
                             <div class="tiny ui buttons">
-                                <button class="ui green inverted button" onclick=location.href="/airports/{{id}}">Update</button> 
+                                <button class="ui green inverted button" onclick=location.href="/airports/{{id}}" >Update</button> 
                                 <div class="or"></div>
                                 <button class="ui red inverted button" onclick="deleteAirports({{id}})">Delete</button>
                             </div>
@@ -72,11 +99,58 @@
             </table>
         </div>
     </div>
+    <div class="ui divider"></div>
 </div>
 
 {{>footer}}
 
 <script>
-  $('.ui.dropdown')
-  .dropdown();
+    $('.ui.dropdown')
+    .dropdown();
+
+    $('.ui.form')
+        .form({
+            fields: {
+                name: {
+                    identifier: 'name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter a valid name'
+                        }
+                    ]
+                },
+                IATA: {
+                    identifier: 'IATA',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter a valid IATA code'
+                        }
+                    ]
+                },
+                country: {
+                    identifier: 'country',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please select a country'
+                        }
+                    ]
+                }
+            }
+        })
+    ;
+
+    /*
+    function validateForm() {
+        var country = document.forms[0]["country"].value;
+        if (country) {
+            return true;
+        }
+        else {
+            alert("Please select a country")
+            return false;
+        }
+    }*/
 </script>

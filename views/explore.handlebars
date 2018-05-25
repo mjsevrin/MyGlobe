@@ -3,25 +3,12 @@
     <div class="ui container">
         <div class="ui padded grid">
             <div class="six wide left floated column">
-                <form id="explore" class="ui form" action="/airports" method="POST">
-                    <div class="field">
-                        <label>Continent</label>
-                        <div class="ui selection dropdown">
-                            <input type="hidden" name="continent">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Continent</div>
-                            <div class="menu">
-                                <div class="item" data-value="AF">Africa</div>
-                                <div class="item" data-value="AS">Asia</div>
-                                <div class="item" data-value="EU">Europe</div>
-                                <div class="item" data-value="NA">North America</div>
-                                <div class="item" data-value="SA">South America</div>
-                                <div class="item" data-value="OC">Oceania</div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="ui tiny button">Search</button>
-                </form>
+                <h3>Search Destinations</h3><br>
+                <h4>WOOPS! Under Construction</h4>
+                <p>
+                    We are diligently working on search features to help you find
+                    your dream vacation, check back later.
+                </p>
             </div>
             <div class="eight wide right floated column">
                     <h3>Search Tips</h3>
@@ -43,10 +30,27 @@
                 </div>
             </div>
         </div>
+        <div class="ui divider"></div>
+    </div>
+    <div class="ui padded grid">
+        <div class="ten wide centered column">
+            <h2>In the meantime, check out our database!</h2>
+            <ul>
+                <li><a href="/airports/">List, Add, Update and Delete Airports (perform Create, Read, Update, Delete operations on a single entity)</a></li>
+                <li><a href="/countries/">List and add new countries</a></li>
+                <li><a href="/vacations/">List and add new vacations</a></li>
+                <li><a href="/flights/">List and add new flights</a></li>
+                <li><a href="/languages/">List and add new languages</a></li>
+                <li><a href="/country_language/">Associate and Deassociate rows between countries and languages (M-to-M relationship)</a></li>
+                <li><a href="/airports/">Associate and Deassociate rows between aiports and countries (1-to-M relationship)</a></li>
+                <li><a href="/country_language/">Change Languages of a Country (M-to-M relationship)</a></li>
+                <li><a href="/airports/">Change Location of an Airport (1-to-M relationship)</a></li>
+                <li><a href="/airports/">Filter Airports by location</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
-<div class="ui divider"></div>
 
 {{>footer}}
 

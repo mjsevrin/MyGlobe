@@ -1,7 +1,7 @@
 <br>
 <div class="content">
     <div class="ui padded grid">
-        <form id="updateAirport" class="ui form" "/airports" method="GET">
+        <form id="updateAirport" class="ui form" action="/airports" method="GET" >
             <div class="field">
                 <label>Name</label>
                 <input type="text" name="name" value="{{airport.airport}}">
@@ -30,7 +30,8 @@
                     </div>
                 </div>
             </div>
-            <button class="ui tiny button" onclick="updateAirport({{airport.id}})">Update</button>
+            <button class="ui tiny button" type="submit" submit="updateAirport({{airport.id}})">Update</button>
+            <div class="ui error message"></div>
         </form>
     </div>
 </div>
@@ -40,6 +41,16 @@
 <script defer>selectCountry({{airport.location}});</script>
 
 <script>
-  $('.ui.dropdown')
-  .dropdown();
+    $('.ui.dropdown')
+        .dropdown();
+    
+    $('.ui.form')
+        .form({
+            fields: {
+            name : 'empty',
+            IATA: 'empty',
+            country : 'empty'
+            }
+        })
+    ;
 </script>

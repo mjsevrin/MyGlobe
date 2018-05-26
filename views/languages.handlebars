@@ -1,7 +1,7 @@
 <br>
 <div class="content">
     <div class="ui padded grid">
-        <form class="ui form">
+        <form class="ui form" action="/languages" method="POST">
             <div class="field">
                 <label>Language</label>
                 <input type="text" name="language" placeholder="Language">
@@ -31,7 +31,7 @@
                     <tr>
                         <td>{{name}}</td>
                         <td>
-                            <button class="ui tiny red inverted button">Delete</button>
+                            <button class="ui tiny red inverted button" onclick="deleteEntry('/languages/{{id}}')">Delete</button>
                         </td>
                     </tr>
                     {{/each}}

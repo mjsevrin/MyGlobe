@@ -44,7 +44,7 @@ module.exports = function() {
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        //context.jsscripts = ["/script/deleteairports.js"];
+        context.jsscripts = ["/script/deleteEntry.js"];
         getCountryLanguage(res, mysql, context, complete);
         getCountries(res, mysql, context, complete);
         getLanguages(res, mysql, context, complete);
@@ -73,21 +73,21 @@ module.exports = function() {
 
     router.post('/', function(req,res){
         var mysql = req.app.get('mysql');
-        var sql = "insert into Airport (name, IATA_code, city, location) values (?, ?, ?, ?)";
-        var inserts = [req.body.name, req.body.IATA, req.body.city, req.body.country];
+        var sql = "insert into Country_Language (country_id, language_id) values (?, ?)";
+        var inserts = [req.body.country, req.body.language];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));
                 res.end();
             }
-            res.redirect('/airports');
+            res.redirect('/country_language');
         });
     });
 
-    router.put('/:id', function(req, res){
+    router.put('/:cid/:lid', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "update Airport set name=?, IATA_code=?, city=?, location=? WHERE airport_id=?";
-        var inserts = [req.body.name, req.body.IATA, req.body.city, req.body.country, req.params.id];
+        var sql = "update Country_Language set country_id=?, language_id=? WHERE country_id=?, language_id=?";
+        var inserts = [req.body.country, req.body.language, req.body.params.cid, req.body.params.lid];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
                 console.log(error)
@@ -99,10 +99,10 @@ module.exports = function() {
         });
     }); 
 
-    router.delete('/:id', function(req, res){
+    router.delete('/:cid/:lid', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "delete from Airport where airport_id = ?";
-        var inserts = [req.params.id];
+        var sql = "delete from Country_Language where country_id = ? and language_id = ?";
+        var inserts = [req.params.cid, req.params.lid];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields) {
             if (error) {
                 res.write(JSON.stringify(error));

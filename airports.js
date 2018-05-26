@@ -46,7 +46,7 @@ module.exports = function() {
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
-        context.jsscripts = ["/script/deleteairports.js"];
+        context.jsscripts = ["/script/deleteEntry.js"];
         getAirports(res, mysql, context, complete);
         getCountries(res, mysql, context, complete);
         function complete() {

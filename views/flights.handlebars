@@ -1,7 +1,7 @@
 <br>
 <div class="content">
     <div class="ui padded grid">
-        <form class="ui form">
+        <form class="ui form" action="/flights" method="POST">
             <div class="field">
                 <label>Flight Information</label>
                 <div class="three fields">
@@ -59,7 +59,7 @@
                         <td>{{dest}}</td>
                         <td>{{cost}}</td>
                         <td>
-                            <button class="ui tiny red inverted button">Delete</button>
+                            <button class="ui tiny red inverted button" onclick="deleteEntry('/flights/{{id}}')">Delete</button>
                         </td>
                     </tr>
                     {{/each}}

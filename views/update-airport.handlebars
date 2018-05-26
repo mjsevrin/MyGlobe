@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <button class="ui tiny button" type="submit" submit="updateAirport({{airport.id}})">Update</button>
+            <button class="ui tiny button">Update</button>
             <div class="ui error message"></div>
         </form>
     </div>
@@ -43,6 +43,11 @@
 <script>
     $('.ui.dropdown')
         .dropdown();
+
+    $("#updateAirport").submit(function(event) {
+        // Cancels the form's submit action.
+        event.preventDefault();
+    });
     
     $('.ui.form')
         .form({
@@ -50,6 +55,9 @@
             name : 'empty',
             IATA: 'empty',
             country : 'empty'
+            },
+            onSuccess: function(event, fields) {
+                updateAirport({{airport.id}});
             }
         })
     ;

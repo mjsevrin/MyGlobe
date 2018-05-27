@@ -59,8 +59,11 @@ module.exports = function() {
     router.get('/:cid/:lid', function(req,res){
         var callbackCount = 0;
         var context = {};
-        //context.jsscripts = ["/script/selectcountries.js","/script/updateairports.js"];
+        context.jsscripts = ["/script/selectCountryLanguage.js","/script/updateCountryLanguage.js"];
         var mysql = req.app.get('mysql');
+        context.selected = {};
+        context.selected.country_id = req.params.cid;
+        context.selected.language_id = req.params.lid;
         getCountries(res, mysql, context, complete);
         getLanguages(res, mysql, context, complete);
         function complete() {
@@ -73,7 +76,7 @@ module.exports = function() {
 
     router.post('/', function(req,res){
         var mysql = req.app.get('mysql');
-        var sql = "insert into Country_Language (country_id, language_id) values (?, ?)";
+        var sql = "insert ignore into Country_Language (country_id, language_id) values (?, ?)";
         var inserts = [req.body.country, req.body.language];
         sql = mysql.pool.query(sql, inserts, function(error, results, fields) {
             if (error) {
@@ -86,11 +89,11 @@ module.exports = function() {
 
     router.put('/:cid/:lid', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "update Country_Language set country_id=?, language_id=? WHERE country_id=?, language_id=?";
-        var inserts = [req.body.country, req.body.language, req.body.params.cid, req.body.params.lid];
+        var sql = "update Country_Language set country_id=?, language_id=? WHERE country_id=? and language_id=?";
+        var inserts = [req.body.country, req.body.language, req.params.cid, req.params.lid];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
-                console.log(error)
+                console.log(error);
                 res.write(JSON.stringify(error));
                 res.end();
             }else{

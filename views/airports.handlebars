@@ -10,7 +10,7 @@
                     </div>
                     <div class="field">
                         <label>IATA Code</label>
-                        <input type="text" name="IATA" placeholder="Code">
+                        <input id="IATA" type="text" name="IATA" placeholder="Code">
                     </div>
                     <div class="field">
                         <label>Location</label>
@@ -37,7 +37,7 @@
                 </form>
             </div>
             <div class="four wide column">
-                <form class="ui form" action="" method="GET">
+                <form class="ui form" action="airports/country/" method="GET">
                     <div class="field">
                         <label>Filter by Country</label>
                         <div class="field">
@@ -124,8 +124,12 @@
                     identifier: 'IATA',
                     rules: [
                         {
-                            type: 'empty',
-                            prompt: 'Please enter a valid IATA code'
+                            type: 'regExp[[A-Z]{3}]',
+                            prompt: 'Please enter an IATA code in all CAPS'
+                        },
+                        {
+                            type: 'exactLength[3]',
+                            prompt: 'IATA Code must be a 3-letter code'
                         }
                     ]
                 },
@@ -134,23 +138,11 @@
                     rules: [
                         {
                             type: 'empty',
-                            prompt: 'Please select a country'
+                            prompt: 'Country must be selected'
                         }
                     ]
                 }
             }
         })
     ;
-
-    /*
-    function validateForm() {
-        var country = document.forms[0]["country"].value;
-        if (country) {
-            return true;
-        }
-        else {
-            alert("Please select a country")
-            return false;
-        }
-    }*/
 </script>

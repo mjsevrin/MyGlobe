@@ -15,16 +15,29 @@ module.exports = function() {
         }
     )
     };
-    
+
+    function getAirports(res, mysql, context, complete) {
+        mysql.pool.query("select Airport.airport_id as id, Airport.IATA_code as IATA from Airport", 
+        function(error, results, fields) {
+        if (error) {
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+        context.airports = results;
+        complete();
+        }
+    )};
+
     router.get('/', function(req,res){
         var callbackCount = 0;
         var context = {};
         var mysql = req.app.get('mysql');
         context.jsscripts = ["/script/deleteEntry.js"];
         getflights(res, mysql, context, complete);
+        getAirports(res, mysql, context, complete);
         function complete() {
             callbackCount++;
-            if (callbackCount >= 1) {
+            if (callbackCount >= 2) {
                 res.render('flights', context);
             }
         }

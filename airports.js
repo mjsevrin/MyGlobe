@@ -28,6 +28,20 @@ module.exports = function() {
         }
     )};
 
+    function filterAirports(res, mysql, context, id, complete) {
+        var sql = "select Airport.airport_id as id, Airport.name as airport, IATA_code, city, Country.name as country from Airport inner join Country on Airport.location = Country.country_id and Country.country_id = ?";
+        var inserts = [id]; 
+        mysql.pool.query(sql, inserts, 
+        function(error, results, fields) {
+        if (error) {
+            res.write(JSON.stringify(error));
+            res.end();
+        }
+        context.airports = results;
+        complete();
+        }
+    )};
+
     function getAirport(res, mysql, context, id, complete) {
         var sql = "select airport_id as id, Airport.name as airport, IATA_code, city, location from Airport where airport_id = ?";
         var inserts = [id]; 
@@ -57,6 +71,21 @@ module.exports = function() {
         }
     });
 
+    router.get('/country/*', function(req,res){
+        var callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        context.jsscripts = ["/script/selectcountries.js","/script/updateairports.js"];
+        filterAirports(res, mysql, context, req.query.country, complete);
+        getCountries(res, mysql, context, complete);
+        function complete() {
+            callbackCount++;
+            if (callbackCount >= 2) {
+                res.render('airports', context);
+            }
+        }
+    });
+    
     router.get('/:id', function(req,res){
         var callbackCount = 0;
         var context = {};
@@ -71,7 +100,7 @@ module.exports = function() {
             }
         }
     });
-
+    
     router.post('/', function(req,res){
         var mysql = req.app.get('mysql');
         var sql = "insert into Airport (name, IATA_code, city, location) values (?, ?, ?, ?)";
@@ -83,6 +112,21 @@ module.exports = function() {
             }
             res.redirect('/airports');
         });
+    });
+    
+    router.post('/country', function(req,res){
+        var callbackCount = 0;
+        var context = {};
+        var mysql = req.app.get('mysql');
+        context.jsscripts = ["/script/selectcountries.js","/script/updateairports.js"];
+        filterAirports(res, mysql, context, req.body.country, complete);
+        getCountries(res, mysql, context, complete);
+        function complete() {
+            callbackCount++;
+            if (callbackCount >= 2) {
+                res.render('airports', context);
+            }
+        }
     });
 
     router.put('/:id', function(req, res){

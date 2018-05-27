@@ -34,6 +34,7 @@
             <div class="ui error message"></div>
         </form>
     </div>
+    <div class="ui divider"></div>
 </div>
 
 {{>footer}}
@@ -43,11 +44,6 @@
 <script>
     $('.ui.dropdown')
         .dropdown();
-
-    $("#updateAirport").submit(function(event) {
-        // Cancels the form's submit action.
-        event.preventDefault();
-    });
     
     $('.ui.form')
         .form({

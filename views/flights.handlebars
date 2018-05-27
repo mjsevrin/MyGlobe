@@ -9,10 +9,10 @@
                         <input type="text" name="airline" placeholder="Airline Code">
                     </div>
                     <div class="field">
-                        <input type="number" name="flightnum" placeholder="Flight #" min="0">
+                        <input type="number" name="flightnum" placeholder="Flight #" min="0" max="9999" step="1">
                     </div>
                     <div class="field">
-                        <input type="number" name="cost" placeholder="$" min="0">
+                        <input type="number" name="cost" placeholder="$" min="0" max="9999" step="1">
                     </div>
                 </div>
             </div>
@@ -20,10 +20,28 @@
                 <label>Itinerary</label>
                 <div class="two fields">
                     <div class="field">
-                        <input type="text" name="src" placeholder="Departing Airport">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="src">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Departing Airport</div>
+                            <div class="menu">
+                                {{#each airports}}
+                                <div class="item" data-value={{id}}>{{IATA}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
                     </div>
                     <div class="field">
-                        <input type="text" name="dest" placeholder="Arriving Airport">
+                        <div class="ui selection dropdown">
+                            <input type="hidden" name="dest">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Arriving Airport</div>
+                            <div class="menu">
+                                {{#each airports}}
+                                <div class="item" data-value={{id}}>{{IATA}}</div>
+                                {{/each}}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button class="ui tiny button">Add Entity</button>            
@@ -73,15 +91,62 @@
 {{>footer}}
 
 <script>
-$('.ui.form')
-  .form({
-    fields: {
-      airline     : 'empty',
-      flightnum   : 'empty',
-      cost : 'empty',
-      src : 'empty',
-      dest : 'empty',
-    }
-  })
-;
+    $('.ui.dropdown')
+        .dropdown();
+    
+    $('.ui.form')
+        .form({
+            fields: {
+                airline : {
+                        identifier: 'airline',
+                        rules: [
+                        {
+                            type: 'regExp[/[A-Z]{2,2}/]',
+                            prompt: 'Airline Code must be capitalized'
+                        },
+                        {
+                            type: 'exactLength[2]',
+                            prompt: 'Airline Code must be a 2-letters code'
+                        }
+                    ]
+                },
+                flightnum : {
+                        identifier: 'flightnum',
+                        rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Flight number must have a value'
+                        }
+                    ]
+                },
+                cost : {
+                        identifier: 'cost',
+                        rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Cost must have a value'
+                        }
+                    ]
+                },
+                src: {
+                        identifier: 'src',
+                        rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Departing Airport must have a selection'
+                        }
+                    ]
+                },
+                dest: {
+                        identifier: 'dest',
+                        rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Departing Airport must have a selection'
+                        }
+                    ]
+                }
+            }
+        })
+    ;
 </script>

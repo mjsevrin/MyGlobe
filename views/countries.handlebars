@@ -24,7 +24,7 @@
             </div>
             <div class="field">
                 <label>Financial Power Index</label>
-                <input type="number" name="fpi" placeholder="FPI" min="0.00" max="2.00" step="0.1">
+                <input type="number" name="fpi" placeholder="FPI" min="0.01" max="2.00" step="0.01" value="1.00">
             </div>
             <button class="ui tiny button">Add Entity</button>
             <div class="ui error message"></div>
@@ -75,9 +75,8 @@
     $('.ui.form')
         .form({
             fields: {
-            name : 'empty',
-            continent : 'empty',
-            fpi : 'empty',
+            name : ['empty', 'maxLength[255]'],
+            continent : 'empty'
             }
         })
     ;

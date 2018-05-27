@@ -4,10 +4,10 @@
         <form class="ui form">
             <div class="field">
                 <label>Country</label>
-                <div class="ui selection dropdown">
+                <div id="countrySelector" class="ui selection dropdown">
                     <input type="hidden" name="country">
                     <i class="dropdown icon"></i>
-                    <div class="default text">\{{seledtedCountry}}</div>
+                    <div class="default text">Country</div>
                     <div class="menu">
                         {{#each countries}}
                         <div class="item" data-value={{country_id}}>{{name}}</div>
@@ -17,10 +17,10 @@
             </div>
             <div class="field">
                 <label>Language</label>
-                <div class="ui selection dropdown">
+                <div id="languageSelector" class="ui selection dropdown">
                     <input type="hidden" name="language">
                     <i class="dropdown icon"></i>
-                    <div class="default text">\{{selectedLanguage}}</div>
+                    <div class="default text">Language</div>
                     <div class="menu">
                         {{#each languages}}
                         <div class="item" data-value={{language_id}}>{{name}}</div>
@@ -28,16 +28,18 @@
                     </div>
                 </div>
             </div>
-            <button class="ui tiny button" type="submit" onclick=location.href="/Country_Language/">Update</button>
+            <button class="ui tiny button">Update</button>
             <div class="ui error message"></div>
         </form>
     </div>
+    <div class="ui divider"></div>
 </div>
 
 {{>footer}}
 
 <script defer>
-    selectCountry({{airport.location}});</script>
+    selectCountryLanguage({{selected.country_id}}, {{selected.language_id}});
+</script>
 <script>
     $('.ui.dropdown')
         .dropdown();
@@ -46,7 +48,10 @@
         .form({
             fields: {
             country : 'empty',
-            language : 'empty'
+            language: 'empty'
+            },
+            onSuccess: function(event, fields) {
+                updateCountryLanguage({{selected.country_id}}, {{selected.language_id}});
             }
         })
     ;
